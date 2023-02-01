@@ -16,43 +16,59 @@ addProduct (title,description,price,thumbnail,code,stock){
         description: description,
         price : price,
         thumbnail :  thumbnail,
-        code: code,
+        code:code,
         stock :stock
     };
 
-    // validacion para que los campos sean obligatorios
-    if (title !=" ",description != " ",price != " ",thumbnail != " ",stock != " " ,code !== " "){
+    // validacion para que los campos sean obligatorios de tipo texto
+    if (title.trim() === "",description.trim() === ""){
        throw new Error(`algunos campos no estan completos completelos`)
     }
-   // validacion para que no se repita el campo code
-   if (code.includes(code)){
-       throw new   Error(`ese id ya existe`)
-   }
-
-
+    // valida que todos los campos sean obligatorios de tipo numero
+    if(price === isNaN || price == undefined, thumbnail=== isNaN || thumbnail== undefined, code ===isNaN || code == undefined, stock===isNaN || stock == undefined ){
+        throw new Error(`algunos campos no estan completos completelos`)
+    }
+  
+   
 // creo un nuevo array para agregar el nuevo producto y se le asigna a producto
     this.products =[...this.products,newProducto];
     
 }
 
-getproductById (){
+
+// funcion para buscar en la lista de productos un ID que exista , sino existe sale error
+
+
+getproductById (id){
     const search  = this.products.find((pr)=>pr.id===id)
     if (!search){
-        throw new Error (`not fount`)
+        throw new Error (`not found`)
     }
 
 }
 
+// metodo para validacion de code , busca si ya existe un code con ese valor
+searchcode (code){
+    const searchcode  = this.products.find((pr)=>pr.code===code)
+    if (searchcode){
+        throw new Error (`ya existe ese code`)
+    }
 
+}
 
 
 }
 
 const order = new ProductManager();
 
+//ordenes de productos//
+order.addProduct ("manzana","grande",300,5,45,45)
+order.addProduct ("pomelo","maduro",300,3,56,234)
+order.getproductById(1)
+order.searchcode(56)
 
-order.addProduct ("hola","bonico",300,345,3,5)
 
-console.log(order.getproduct())
-console.log (order.getproduct())
+// para ver la  la lista de pedidos//
+console.log(order) 
+
 
