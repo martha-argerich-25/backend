@@ -21,7 +21,7 @@ addProduct (title,description,price,thumbnail,code,stock){
     };
 
     // validacion para que los campos sean obligatorios de tipo texto
-    if (title.trim() === "",description.trim() === ""){
+    if (title.length === 0 ,description.length === 0){
        throw new Error(`algunos campos no estan completos completelos`)
     }
     // valida que todos los campos sean obligatorios de tipo numero
@@ -62,10 +62,10 @@ searchcode (code){
 const order = new ProductManager();
 
 //ordenes de productos//
-order.addProduct ("manzana","grande",300,5,45,45)
+order.addProduct ("tomate","grande",5,65,45,45)
 order.addProduct ("pomelo","maduro",300,3,56,234)
 order.getproductById(1)
-order.searchcode(56)
+order.searchcode(59)
 
 
 // para ver la  la lista de pedidos//
