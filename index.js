@@ -38,11 +38,11 @@ async addProduct (title,description,price,thumbnail,code,stock){
     if(price === isNaN || price == undefined, thumbnail=== isNaN || thumbnail== undefined, code ===isNaN || code == undefined, stock===isNaN || stock == undefined ){
         throw new Error(`algunos campos no estan completos completelos`)
     }
-  
+  //--------------------------------------------------------------------------------
 // creo un nuevo array para agregar el nuevo producto y se le asigna a producto
     this.products =[...this.products,newProducto];
 
-    //ESCRIBIR y lo paso a formato json
+    //ESCRIBIR LE PRODUCTO y lo paso a formato json
     await fs.promises.writeFile(this.#path,JSON.stringify(this.products))
     
 }
@@ -58,7 +58,7 @@ return JSON.parse(users)
     }
 }
 
-//METODO UPDATE PRODUCT para actualizar un campo
+//METODO UPDATE PRODUCT para actualizar un campo ??
 updateProduct (id,title){
 
 }
@@ -118,10 +118,10 @@ searchcode (code){
 // funcion principal para manejar los productos
 async function main(){
     const order = new ProductManager();
-    order.addProduct ("tomate","grande",5,65,45,45)
-    order.addProduct ("pomelo","maduro",300,3,56,234)
-    order.getproductById(1)
-    order.searchcode(59)
+    await order.addProduct ("tomate","grande",5,65,45,45)
+    await order.addProduct ("pomelo","maduro",300,3,56,234)
+    await  order.getproductById(1)
+   
 
 }
 
